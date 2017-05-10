@@ -1,34 +1,35 @@
 module.exports = {
 
+  //words function
   words: (sentence) => {
-    //sentence = sentence.replace(/ {2}/g, ' ').replace(/\n/g, ' ').replace(/\t/g, ' ');
+    
+    //replace all tabs(\t), newlines(\n) , multiple spaces({2}) with one space
+    sentence = sentence.replace(/ {2}/g, ' ').replace(/\n/g, ' ').replace(/\t/g, ' ');
 
 
-    let words = sentence.split(' ' || '\n');// splits the string into an array
+    // splits the string into an array
+    let words = sentence.split(' ');
 
+    //initialize empty object
     let results = {};
+    
+    //loops through the array
+    for (let count = 0; count < words.length; count++) {
 
-    for (let count = 0; count < words.length; count++) {//loops through the array
-
-      //if (words[count] in res===true){ 
-
+        //checks if value exists and adds one ,else sets value to 1 so 
         if (results[words[count]] >= 1) {
 
           results[words[count]] += 1 ;
 
-        } else { 
+        } 
+
+        else { 
 
           results[words[count]] = 1;
 
         }
 
-      } //else { 
-
-        //results[words[count]] = 1;
-
-      //}
-
-    //}
+      } 
 
     return results;
   }
