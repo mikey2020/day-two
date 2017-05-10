@@ -4,11 +4,12 @@ const baseUrl = "http://www.anapioficeandfire.com/api/";
 
 const prompt = require('prompt');
 
-console.log("Welcome to Fire and Ice CLI Wiki ");
-console.log("Fire and Ice has a lot of characters so please the amount ");
+console.log("Welcome to Fire and Ice CLI Wiki \n");
+
 console.log("Enter '1' => 'list of all fire and ice books'");
 console.log("Enter '2' => 'list of 100 characters in fire and ice books'");
 console.log("Enter '3' => 'list of 100 houses in fire and ice books'");
+
 console.log("Input your choice below ==>");
 
 prompt.get("query",function(err,results){
@@ -46,10 +47,10 @@ let listBooks =  () =>{
 
 let listHouses =  () =>{
   let count = 1;
-  while(count < 100){
+  while(count <= 100){
     request(baseUrl + "houses/" + count,function(err,res,body){
       if(err) {
-        console.log("There was problem during connection with : \n" + err );
+        console.log("There was problem during connection \n please check connection and try again");
       }
       let data = JSON.parse(body);
       if(data.name && data.region){
@@ -66,19 +67,21 @@ let listHouses =  () =>{
 
 let listCharacters = () =>{
   let count = 1;
-  while(count < 1000){
+  while(count <= 100){
     request(baseUrl + "characters/" + count  ,function(err,res,body){
       if(err){
-        console.log(err);
+        console.log("There was problem during connection \n please check connection and try again");
       } 
       let data = JSON.parse(body);
+      console.log("List of 100 characters : \n")
       if(data.name){
-        console.log("Name : " + data.name + "\n");
+        console.log("Character Name : " + data.name + "\n");
       }   
     });
     
     count++;
   }
+  
 };
 
 
