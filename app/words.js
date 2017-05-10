@@ -1,35 +1,35 @@
 module.exports = {
 
-  words: (word) => {
-    //let list = string.replace(/ {2}/g, ' ').replace(/\n/g, ' ').replace(/\t/g, ' ');
+  words: (sentence) => {
+    //sentence = sentence.replace(/ {2}/g, ' ').replace(/\n/g, ' ').replace(/\t/g, ' ');
 
 
-    let array = word.split(' ');// splits the string into an array
+    let words = sentence.split(' ' || '\n');// splits the string into an array
 
     let results = {};
 
-    for (let count = 0; count < array.length; count++) {//loops through the array
+    for (let count = 0; count < words.length; count++) {//loops through the array
 
-      if (array[i] in res===true){ 
+      //if (words[count] in res===true){ 
 
-        if (res[array[i]] >= 1) {
+        if (results[words[count]] >= 1) {
 
-          res[array[i]]++;
+          results[words[count]] += 1 ;
 
         } else { 
 
-          res[array[i]] = 1;
+          results[words[count]] = 1;
 
         }
 
-      } else { 
+      } //else { 
 
-        res[array[i]] = 1;
+        //results[words[count]] = 1;
 
-      }
+      //}
 
-    }
+    //}
 
-    return res;
+    return results;
   }
 }
