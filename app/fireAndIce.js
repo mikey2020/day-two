@@ -5,62 +5,79 @@ const baseUrl = "http://www.anapioficeandfire.com/api/";
 const prompt = require('prompt');
 
 console.log("Welcome to Fire and Ice CLI Wiki ");
-
-console.log("You can search 'list books => list of all books','list houses => list of all houses'");
+console.log("Fire and Ice has a lot of characters so please the amount ");
+console.log("Enter '1' => 'list of all fire and ice books'");
+console.log("Enter '2' => 'list of 100 characters in fire and ice books'");
+console.log("Enter '3' => 'list of 100 houses in fire and ice books'");
 console.log("Input your choice below ==>");
 
-/*prompt.get("query",function(err,results){
-	if(results.query === "list books"){
-		listAllBooks();
+prompt.get("query",function(err,results){
+	if(results.query === "1"){
+		listBooks();
 	}
 
-	else if(results.query === "list houses"){
-		listAllHouses();
+	else if(results.query === "2"){
+		listHouses();
 	}
 
+	else if(results.query === "3"){
+		listCharacters();
+	}
 	else{
-		console.log(results.query + " is not a valid search ");
+		console.log(results.query + " is not a valid input ");
 	}
 
-})*/
-
-request("http://www.anapioficeandfire.co/api/books",function(err,res,body){
-	if(err){
-		console.log(err);
-	} 
-	console.log(body);
 });
 
-let listAllBooks =  () =>{
+
+let listBooks =  () =>{
 	request(baseUrl + "books",function(err,res,body){
 		if(err){
-			console.log(err);
+			console.log("There was problem during connection");
 		}
 		let data = JSON.parse(res.body);
-		//console.log(data);
 		for(let count in data){
-			console.log(data[count].name);//
+			console.log("Book Name : " + data[count].name );
+			console.log("ISBN : " + data[count].isbn + "\n")
 		}
 	});
 };
 
-let listAllHouses =  () =>{
+let listHouses =  () =>{
 	let count = 1;
-	while(count < 10){
-		count = count.toString();
-		request(baseUrl + "houses" + count,function(err,res,body){
-			if(err) throw err;
-			//console.log(body);
+	while(count < 100){
+		request(baseUrl + "houses/" + count,function(err,res,body){
+			if(err) {
+				console.log("There was problem during connection with : \n" + err );
+			}
 			let data = JSON.parse(body);
-			console.log(data);
-			/*for(let counter in data){
-				console.log(data[counter].name);
-			}*/
+			if(data.name && data.region){
+				console.log("House Name : " + data.name );
+				console.log("Region : " + data.region + "\n");
+			}
+			
 		});
 
 		count++;
 	}
 	
+};
+
+let listCharacters = () =>{
+	let count = 1;
+	while(count < 1000){
+		request(baseUrl + "characters/" + count  ,function(err,res,body){
+			if(err){
+				console.log(err);
+			} 
+			let data = JSON.parse(body);
+			if(data.name){
+				console.log("Name : " + data.name + "\n");
+			}		
+		});
+		
+		count++;
+	}
 };
 
 
