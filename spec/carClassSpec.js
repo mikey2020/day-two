@@ -1,4 +1,4 @@
-const Car = require('../app/car.js');
+const Car = require('../app/carClass.js');
 
 describe("Car Class: Create a car, make it drive", function() {
 
