@@ -6,20 +6,16 @@ const prompt = require('prompt');
 
 console.log("Welcome to Fire and Ice CLI Wiki ");
 
-console.log("You can search 'all books => list of all books','characters => list of all characters'");
+console.log("You can search 'list books => list of all books','list houses => list of all houses'");
 console.log("Input your choice below ==>");
 
 prompt.get("query",function(err,results){
-	if(results.query === "all books"){
+	if(results.query === "list books"){
 		listAllBooks();
 	}
 
-	else if(results.query === "characters"){
-		etAllCharacters();
-	}
-
-	else if(results.query === "houses"){
-		
+	else if(results.query === "list houses"){
+		listAllHouses();
 	}
 
 	else{
@@ -41,8 +37,16 @@ let listAllBooks =  () =>{
 	});
 };
 
-let getAllCharacters =  () =>{
-	request(baseUrl + "characters",function(err,res,body){
-		console.log(body);
-});
+let listAllHouses =  () =>{
+	request(baseUrl + "houses",function(err,res,body){
+		if(err) throw err;
+		//console.log(body);
+		let data = JSON.parse(body);
+		for(let count in data){
+			console.log(data[count].name);
+		}
+	});
 };
+
+
+
