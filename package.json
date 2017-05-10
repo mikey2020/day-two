@@ -3,16 +3,11 @@
   "version": "1.0.0",
   "description": "Andela Day two tasks",
   "main": "index.js",
-  "dependencies": {
-    "request": "^2.81.0",
-  },
   "devDependencies": {
-    "inquirer": "^3.0.6",
     "jasmine": "^2.6.0"
   },
   "scripts": {
-    "start": "node app/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
