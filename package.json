@@ -1,0 +1,27 @@
+{
+  "name": "day-two",
+  "version": "1.0.0",
+  "description": "Andela Day two tasks",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.81.0",
+  },
+  "devDependencies": {
+    "inquirer": "^3.0.6",
+    "jasmine": "^2.6.0"
+  },
+  "scripts": {
+    "start": "node app/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikey2020/day-two.git"
+  },
+  "author": "Michael Eboagu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikey2020/day-two/issues"
+  },
+  "homepage": "https://github.com/mikey2020/day-two#readme"
+}
