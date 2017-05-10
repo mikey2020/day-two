@@ -9,7 +9,7 @@ console.log("Welcome to Fire and Ice CLI Wiki ");
 console.log("You can search 'list books => list of all books','list houses => list of all houses'");
 console.log("Input your choice below ==>");
 
-prompt.get("query",function(err,results){
+/*prompt.get("query",function(err,results){
 	if(results.query === "list books"){
 		listAllBooks();
 	}
@@ -22,7 +22,14 @@ prompt.get("query",function(err,results){
 		console.log(results.query + " is not a valid search ");
 	}
 
-})
+})*/
+
+request("http://www.anapioficeandfire.co/api/books",function(err,res,body){
+	if(err){
+		console.log(err);
+	} 
+	console.log(body);
+});
 
 let listAllBooks =  () =>{
 	request(baseUrl + "books",function(err,res,body){
@@ -38,14 +45,22 @@ let listAllBooks =  () =>{
 };
 
 let listAllHouses =  () =>{
-	request(baseUrl + "houses",function(err,res,body){
-		if(err) throw err;
-		//console.log(body);
-		let data = JSON.parse(body);
-		for(let count in data){
-			console.log(data[count].name);
-		}
-	});
+	let count = 1;
+	while(count < 10){
+		count = count.toString();
+		request(baseUrl + "houses" + count,function(err,res,body){
+			if(err) throw err;
+			//console.log(body);
+			let data = JSON.parse(body);
+			console.log(data);
+			/*for(let counter in data){
+				console.log(data[counter].name);
+			}*/
+		});
+
+		count++;
+	}
+	
 };
 
 
