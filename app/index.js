@@ -12,17 +12,20 @@ console.log("Enter '3' => 'list of 100 houses in fire and ice books'");
 
 console.log("Input your choice below ==>");
 
+prompt.start();
+
 prompt.get("query",function(err,results){
   if(results.query === "1"){
     listBooks();
   }
 
   else if(results.query === "2"){
-    listHouses();
+    listCharacters();
+
   }
 
   else if(results.query === "3"){
-    listCharacters();
+    listHouses();
   }
   else{
     console.log(results.query + " is not a valid input ");
@@ -67,13 +70,14 @@ let listHouses =  () =>{
 
 let listCharacters = () =>{
   let count = 1;
+  console.log("List of 100 characters : \n");
   while(count <= 100){
     request(baseUrl + "characters/" + count  ,function(err,res,body){
       if(err){
         console.log("There was problem during connection \n please check connection and try again");
       } 
       let data = JSON.parse(body);
-      console.log("List of 100 characters : \n")
+      
       if(data.name){
         console.log("Character Name : " + data.name + "\n");
       }   
